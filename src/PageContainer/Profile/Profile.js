@@ -5,6 +5,7 @@ import { CgProfile } from "react-icons/cg";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
+  console.log(process.env.REACT_APP_SERVER_BASE_URL);
   const getProfile = async () => {
     const name = localStorage.getItem("name");
     axios
