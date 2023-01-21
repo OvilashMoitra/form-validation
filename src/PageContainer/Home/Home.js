@@ -20,7 +20,7 @@ const Home = () => {
   //   get all sec(tors from db
   const getSector = () => {
     axios
-      .get(`http://localhost:5000/sector`)
+      .get(`${process.env.REACT_APP_SERVER_BASE_URL}sector`)
       .then(function (response) {
         // handle success
         // console.log(response.data);
@@ -36,7 +36,7 @@ const Home = () => {
   useEffect(() => {
     const name = localStorage.getItem("name");
     axios
-      .get(`http://localhost:5000/profile?name=${name}`)
+      .get(`${process.env.REACT_APP_SERVER_BASE_URL}profile?name=${name}`)
       .then(function (response) {
         // handle success
         if (response.data !== "") {
@@ -53,7 +53,7 @@ const Home = () => {
   //   post function to store data to db
   const postData = (data) => {
     axios
-      .post("http://localhost:5000/profile/post", {
+      .post(`${process.env.REACT_APP_SERVER_BASE_URL}profile/post`, {
         data,
       })
       .then(function (response) {
@@ -80,9 +80,12 @@ const Home = () => {
   const onUpdate = async (data) => {
     localStorage.setItem("name", data.name);
     await axios
-      .put(`http://localhost:5000/profile/update?id=${profile._id}`, {
-        data,
-      })
+      .put(
+        `${process.env.REACT_APP_SERVER_BASE_URL}profile/update?id=${profile._id}`,
+        {
+          data,
+        }
+      )
       .then(function (response) {
         toast.success("Your profile has been updated successfully");
       })

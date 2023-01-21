@@ -8,7 +8,7 @@ const Profile = () => {
   const getProfile = async () => {
     const name = localStorage.getItem("name");
     axios
-      .get(`http://localhost:5000/profile?name=${name}`)
+      .get(`${process.env.REACT_APP_SERVER_BASE_URL}profile?name=${name}`)
       .then(function (response) {
         // handle success
         if (response?.data !== "") {
