@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const {
@@ -97,87 +98,98 @@ const Home = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col w-[700px] px-10 bg-white shadow-inner mx-auto my-10 py-10 rounded-lg"
-    >
-      <h1 className="text-2xl font-bold text-center">Form</h1>
-
-      <fieldset className="text-left">Enter your name here</fieldset>
-      <input
-        className="block bg-blue-200 text-black w-full py-2 px-rounded rounded-md pl-2"
-        {...register("name", { required: true })}
-        aria-invalid={errors.name ? "true" : "false"}
-        placeholder="Enter your name"
-        defaultValue={profile?.name ? profile.name : ""}
-      />
-      {errors.name?.type === "required" && (
-        <p className="text-red-400" role="alert">
-          Name is required
-        </p>
-      )}
-      <fieldset className="text-left">Select the sector</fieldset>
-      <select
-        className="block bg-blue-200 text-black w-full py-2 px-rounded rounded-md pl-2"
-        {...register("sector", { required: true })}
-        aria-invalid={errors.sector ? "true" : "false"}
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>My Title</title>
+        <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col w-[700px] px-10 bg-white shadow-inner mx-auto my-10 py-10 rounded-lg"
       >
-        <option value={profile?.sector ? profile.sector : ""} disabled selected>
-          Select the sector
-        </option>
-        {sector.map((elem) => (
-          <option key={uuidv4()} value={elem}>
-            {elem}
+        <h1 className="text-2xl font-bold text-center">Form</h1>
+
+        <fieldset className="text-left">Enter your name here</fieldset>
+        <input
+          className="block bg-blue-200 text-black w-full py-2 px-rounded rounded-md pl-2"
+          {...register("name", { required: true })}
+          aria-invalid={errors.name ? "true" : "false"}
+          placeholder="Enter your name"
+          defaultValue={profile?.name ? profile.name : ""}
+        />
+        {errors.name?.type === "required" && (
+          <p className="text-red-400" role="alert">
+            Name is required
+          </p>
+        )}
+        <fieldset className="text-left">Select the sector</fieldset>
+        <select
+          className="block bg-blue-200 text-black w-full py-2 px-rounded rounded-md pl-2"
+          {...register("sector", { required: true })}
+          aria-invalid={errors.sector ? "true" : "false"}
+        >
+          <option
+            value={profile?.sector ? profile.sector : ""}
+            disabled
+            selected
+          >
+            Select the sector
           </option>
-        ))}
-      </select>
-      {errors.sector?.type === "required" && (
-        <p className="text-red-400" role="alert">
-          Sector is required
-        </p>
-      )}
+          {sector.map((elem) => (
+            <option key={uuidv4()} value={elem}>
+              {elem}
+            </option>
+          ))}
+        </select>
+        {errors.sector?.type === "required" && (
+          <p className="text-red-400" role="alert">
+            Sector is required
+          </p>
+        )}
 
-      <fieldset className="flex justify-start my-2">
-        <input
-          {...register("terms", { required: "Terms is required" })}
-          aria-invalid={errors.terms ? "true" : "false"}
-          type="checkbox"
-          className="inline-block w-4"
-          id="terms"
-          defaultChecked={profile?.terms ? true : false}
-        />
-        <label for="terms">Agree to terms</label>
-      </fieldset>
-      {/* <br /> */}
-      {errors.terms && (
-        <p className="text-red-400" role="alert">
-          {errors.terms?.message}
-        </p>
-      )}
-      <fieldset className="flex w-[40%] mx-auto">
-        <input
-          type="submit"
-          value={
-            profile?.name ? "Create another new Profile" : "Create Profile"
-          }
-          class="w-[200px] mx-auto text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-10 mb-2"
-        />
-        {profile?.name ? (
+        <fieldset className="flex justify-start my-2">
           <input
-            type="Submit"
-            value="Update"
-            class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-            onClick={handleSubmit(onUpdate)}
+            {...register("terms", { required: "Terms is required" })}
+            aria-invalid={errors.terms ? "true" : "false"}
+            type="checkbox"
+            className="inline-block w-4"
+            id="terms"
+            defaultChecked={profile?.terms ? true : false}
           />
-        ) : null}
-      </fieldset>
-      <Link
-        className="text-white w-[150px] mx-auto bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-        to={"/profile"}
-      >
-        See my profile
-      </Link>
-    </form>
+          <label for="terms">Agree to terms</label>
+        </fieldset>
+        {/* <br /> */}
+        {errors.terms && (
+          <p className="text-red-400" role="alert">
+            {errors.terms?.message}
+          </p>
+        )}
+        <fieldset className="flex w-[40%] mx-auto">
+          <input
+            type="submit"
+            value={
+              profile?.name ? "Create another new Profile" : "Create Profile"
+            }
+            class="w-[200px] mx-auto text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 mr-10 mb-2"
+          />
+          {profile?.name ? (
+            <input
+              type="Submit"
+              value="Update"
+              class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+              onClick={handleSubmit(onUpdate)}
+            />
+          ) : null}
+        </fieldset>
+        <Link
+          className="text-white w-[150px] mx-auto bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          to={"/profile"}
+        >
+          See my profile
+        </Link>
+      </form>
+    </>
   );
 };
 
