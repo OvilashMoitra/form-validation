@@ -37,9 +37,9 @@ const Profile = () => {
         <h1 className="text-2xl font-bold text-center">Profile</h1>
         <div className="flex w-[80%] mx-auto justify-center align-items-center bg-blue-200 p-10 rounded-md">
           <ul className=" text-black w-full ">
-            <li>Name</li>
-            <li>Sector</li>
-            <li>Terms</li>
+            <li className="my-2">Name</li>
+            <li className="my-2">Sector</li>
+            <li className="my-2">Terms</li>
           </ul>
           <ul className=" text-black w-full">
             <li>

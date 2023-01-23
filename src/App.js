@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 const Home = lazy(() => import("./PageContainer/Home/Home"));
@@ -17,9 +17,11 @@ function App() {
     },
   ]);
   return (
-    <div className="App">
-      <RouterProvider router={router} />
-    </div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className="App">
+        <RouterProvider router={router} />
+      </div>
+    </Suspense>
   );
 }
 
