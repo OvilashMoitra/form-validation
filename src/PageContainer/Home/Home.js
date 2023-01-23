@@ -105,7 +105,7 @@ const Home = () => {
       </Helmet>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col w-[700px] px-10 bg-white shadow-inner mx-auto my-10 py-10 rounded-lg border-solid border-black"
+        className="flex flex-col md:w-[700px] w-[90%] px-10 bg-white shadow-inner mx-auto my-10 py-10 rounded-lg border-solid border-black border-[1px]"
       >
         <h1 className="text-2xl font-bold text-center">Form</h1>
 
