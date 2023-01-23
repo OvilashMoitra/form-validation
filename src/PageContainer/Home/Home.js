@@ -101,12 +101,11 @@ const Home = () => {
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>My Title</title>
-        <link rel="canonical" href="http://mysite.com/example" />
+        <title>Home || Form</title>
       </Helmet>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col w-[700px] px-10 bg-white shadow-inner mx-auto my-10 py-10 rounded-lg"
+        className="flex flex-col w-[700px] px-10 bg-white shadow-inner mx-auto my-10 py-10 rounded-lg border-solid border-black"
       >
         <h1 className="text-2xl font-bold text-center">Form</h1>
 

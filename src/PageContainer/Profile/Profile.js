@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { Helmet } from "react-helmet";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -28,7 +29,11 @@ const Profile = () => {
 
   return (
     <div>
-      <section className="w-[700px] px-10 bg-white shadow-inner mx-auto my-10 py-10 rounded-lg">
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Profile</title>
+      </Helmet>
+      <section className="w-[700px] px-10 bg-white shadow-inner mx-auto my-10 py-10 rounded-lg border-solid border-black">
         <h1 className="text-2xl font-bold text-center">Profile</h1>
         <div className="flex w-[80%] mx-auto justify-center align-items-center bg-blue-200 p-10 rounded-md">
           <ul className=" text-black w-full ">
