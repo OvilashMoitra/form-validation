@@ -154,7 +154,6 @@ const Home = () => {
             type="checkbox"
             className="inline-block w-4"
             id="terms"
-            defaultChecked={profile?.terms ? true : false}
           />
           <label for="terms">Agree to terms</label>
         </fieldset>
